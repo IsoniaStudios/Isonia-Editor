@@ -1,0 +1,3 @@
+[submodule "IsoniaCore"]
+	path = IsoniaCore
+	url = https://github.com/IsoniaStudios/IsoniaCore.git
