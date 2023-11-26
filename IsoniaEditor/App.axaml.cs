@@ -15,7 +15,14 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow();
+            // Create an instance of EditorViewModel
+            EditorViewModel editorViewModel = new();
+
+            // Create an instance of the view
+            EditorView editorView = new(editorViewModel);
+
+            // Set the MainWindow of the appication
+            desktop.MainWindow = editorView;
         }
 
         base.OnFrameworkInitializationCompleted();

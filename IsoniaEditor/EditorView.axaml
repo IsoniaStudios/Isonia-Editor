@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:IsoniaEditor"
+		mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="360"
+				
+		xmlns:Projects="clr-namespace:IsoniaEditor.Projects"
+		xmlns:Editors="clr-namespace:IsoniaEditor.Editors"
+
+		x:Class="IsoniaEditor.EditorView"
+        x:DataType="local:EditorViewModel"
+		x:CompileBindings="True"
+
+		MinWidth="624" MinHeight="321"
+		Width="1008" Height="537"
+
+		ExtendClientAreaChromeHints="PreferSystemChrome"
+		ExtendClientAreaToDecorationsHint="True"
+		ExtendClientAreaTitleBarHeightHint="40"
+		
+		WindowStartupLocation="CenterScreen"
+
+		Title="{Binding Title, Mode=OneTime}">
+
+	<Design.DataContext>
+		<local:EditorViewModel />
+	</Design.DataContext>
+
+	<Window.Styles>
+		<Style Selector="Window[WindowState=Maximized]">
+			<Setter Property="Padding" Value="8" />
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="33, *">
+		<Border BorderBrush="{StaticResource Fill-1-SolidColorBrush}"
+				BorderThickness="0,0,0,1"
+				Padding="10" >
+			<TextBlock Theme="{StaticResource SubTitle}"
+					   Classes="Secondary H7"
+					   VerticalAlignment="Center">
+				<Run Text="{Binding Title, Mode=OneTime}"/>
+				<Run Text="{Binding Version, Mode=OneTime, Converter={StaticResource VersionConverter}, ConverterParameter=3}"/>
+			</TextBlock>
+		</Border>
+
+	</Grid>
+
+</Window>
