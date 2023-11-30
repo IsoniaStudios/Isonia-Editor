@@ -35,18 +35,22 @@
 
 	<Grid RowDefinitions="33, *">
 		<Border BorderBrush="{StaticResource Fill-1-SolidColorBrush}"
-				BorderThickness="0,0,0,1"
-				Padding="10" >
-			<TextBlock Theme="{StaticResource SubTitle}"
-					   Classes="Secondary H7"
-					   VerticalAlignment="Center">
-				<Run Text="{Binding Title, Mode=OneTime}"/>
-				<Run Text="{Binding Version, Mode=OneTime, Converter={StaticResource VersionConverter}, ConverterParameter=3}"/>
-			</TextBlock>
+				BorderThickness="0,0,0,1">
+
+			<Menu HorizontalAlignment="Left">
+				<MenuItem Header="File">
+					<MenuItem Header="New Layout" />
+					<MenuItem Header="New Layout 2" />
+				</MenuItem>
+				<MenuItem Header="Edit">
+					<MenuItem Header="New Layout" />
+					<Separator />
+					<MenuItem Header="New Layout 2" />
+				</MenuItem>
+			</Menu>
+			
 		</Border>
 
-		<TextBlock FontFamily=""> asdfsdaf </TextBlock>
-		
 	</Grid>
 
 </Window>
