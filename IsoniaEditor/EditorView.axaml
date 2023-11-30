@@ -45,6 +45,8 @@
 			</TextBlock>
 		</Border>
 
+		<TextBlock FontFamily=""> asdfsdaf </TextBlock>
+		
 	</Grid>
 
 </Window>
