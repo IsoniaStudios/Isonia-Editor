@@ -37,7 +37,7 @@
 		<Border BorderBrush="{StaticResource Fill-1-SolidColorBrush}"
 				BorderThickness="0,0,0,1">
 
-			<Menu HorizontalAlignment="Left" ItemsSource="{Binding test}"/>
+			<Menu HorizontalAlignment="Left" ItemsSource="{Binding Test}" Theme="{StaticResource MVVM}" />
 			
 		</Border>
 
