@@ -37,17 +37,7 @@
 		<Border BorderBrush="{StaticResource Fill-1-SolidColorBrush}"
 				BorderThickness="0,0,0,1">
 
-			<Menu HorizontalAlignment="Left">
-				<MenuItem Header="File">
-					<MenuItem Header="New Layout" />
-					<MenuItem Header="New Layout 2" />
-				</MenuItem>
-				<MenuItem Header="Edit">
-					<MenuItem Header="New Layout" />
-					<Separator />
-					<MenuItem Header="New Layout 2" />
-				</MenuItem>
-			</Menu>
+			<Menu HorizontalAlignment="Left" ItemsSource="{Binding test}"/>
 			
 		</Border>
 

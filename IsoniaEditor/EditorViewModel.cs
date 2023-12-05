@@ -12,6 +12,10 @@ public class EditorViewModel : Observable
     public Version? Version => version;
     public string? Title => title;
 
+
+    public string[] test => new string[] { "asdf", "asdfashgas" };
+
+
     public EditorViewModel()
     {
     }
