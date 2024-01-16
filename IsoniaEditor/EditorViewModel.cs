@@ -1,6 +1,8 @@
 ﻿using IsoniaCore.Resources.Icons;
+using IsoniaCore.Native.Visuals;
 using IsoniaCore.ViewModels;
 using IsoniaCore.DataTypes;
+using Avalonia.Platform;
 using Avalonia.Input;
 using System.Collections.ObjectModel;
 using System.Reflection;
@@ -17,6 +19,8 @@ public class EditorViewModel : Observable
     public string? Title => title;
 
     public ObservableCollection<MenuItemViewModel> Test { get; }
+
+    public NativeEmbeddingControl Isonia { get; } = new();
 
     public EditorViewModel()
     {
@@ -46,5 +50,11 @@ public class EditorViewModel : Observable
             new("Window"),
             new("Tools")
         };
+
+        if (App.IsoniaContainer is null)
+            return;
+
+        // create the platform handle from the container and assign the embedSample handle to platformHandle
+        Isonia.Handle = App.IsoniaContainer.Resolve<IPlatformHandle?>("CreateIsoniaView");
     }
 }

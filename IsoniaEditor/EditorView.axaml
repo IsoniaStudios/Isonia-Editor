@@ -41,6 +41,8 @@
 			
 		</Border>
 
+		<ContentControl Content="{Binding Isonia}" Grid.Row="1"/>
+		
 	</Grid>
 
 </Window>
