@@ -4,7 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:IsoniaEditor"
 		mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="360"
-				
+
+		xmlns:Dock="clr-namespace:IsoniaCore.Resources.Controls.Dock;assembly=IsoniaCore"
+
 		xmlns:Projects="clr-namespace:IsoniaEditor.Projects"
 		xmlns:Editors="clr-namespace:IsoniaEditor.Editors"
 
@@ -33,7 +35,7 @@
 		</Style>
 	</Window.Styles>
 
-	<Grid RowDefinitions="33, *">
+	<Grid RowDefinitions="33, *, *, *">
 		<Border BorderBrush="{StaticResource Fill-1-SolidColorBrush}"
 				BorderThickness="0,0,0,1">
 
@@ -41,6 +43,10 @@
 			
 		</Border>
 
+		<Dock:DockControl Grid.Row="1">
+			<TextBlock>asdf</TextBlock>
+		</Dock:DockControl>
+		<Dock:DockControl DataContext="{Binding Test}" Grid.Row="2"/>
 	</Grid>
 
 </Window>

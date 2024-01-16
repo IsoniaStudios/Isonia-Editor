@@ -18,6 +18,8 @@ public class EditorViewModel : Observable
 
     public ObservableCollection<MenuItemViewModel> Menu { get; }
 
+    public ViewModelBase Test { get; } = new Test();
+
     public EditorViewModel()
     {
         Menu = new()
