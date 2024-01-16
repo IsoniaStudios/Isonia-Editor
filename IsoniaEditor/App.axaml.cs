@@ -1,9 +1,6 @@
 using Avalonia;
 using Avalonia.Markup.Xaml;
 using Avalonia.Controls.ApplicationLifetimes;
-using NP.DependencyInjection.Interfaces;
-using System.IO;
-using NP.IoCy;
 
 namespace IsoniaEditor;
 
@@ -14,19 +11,8 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public static IDependencyInjectionContainer? IsoniaContainer { get; private set; }
-
     public override void OnFrameworkInitializationCompleted()
     {
-        // Create the container builder
-        ContainerBuilder containerBuilder = new();
-
-        // Assembly injection
-        containerBuilder.RegisterPluginsFromSubFolders($".");
-
-        // Container creation
-        IsoniaContainer = containerBuilder.Build();
-
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Create an instance of EditorViewModel

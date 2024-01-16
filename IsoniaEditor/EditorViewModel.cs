@@ -2,11 +2,11 @@
 using IsoniaCore.Native.Visuals;
 using IsoniaCore.ViewModels;
 using IsoniaCore.DataTypes;
-using Avalonia.Platform;
 using Avalonia.Input;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System;
+using IsoniaCore.Native.NativeAdapters;
 
 namespace IsoniaEditor;
 
@@ -52,10 +52,7 @@ public class EditorViewModel : Observable
             new("Tools")
         };
 
-        if (App.IsoniaContainer is null)
-            return;
-
         // create the platform handle from the container and assign the embedSample handle to platformHandle
-        Isonia.Handle = App.IsoniaContainer.Resolve<IPlatformHandle?>("CreateIsoniaView");
+        Isonia.Handle = ControlsIoCFactory.CreateIsoniaView();
     }
 }

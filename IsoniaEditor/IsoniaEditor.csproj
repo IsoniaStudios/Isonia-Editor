@@ -10,6 +10,8 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<PlatformTarget>x64</PlatformTarget>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
