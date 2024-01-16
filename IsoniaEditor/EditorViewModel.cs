@@ -20,7 +20,7 @@ public class EditorViewModel : Observable
 
     public ObservableCollection<MenuItemViewModel> Menu { get; }
 
-    public NativeEmbeddingControl Isonia { get; } = new();
+    public NativeEmbeddingControl Isonia { get; }
 
     public EditorViewModel()
     {
@@ -53,6 +53,6 @@ public class EditorViewModel : Observable
         };
 
         // create the platform handle from the container and assign the embedSample handle to platformHandle
-        Isonia.Handle = ControlsIoCFactory.CreateIsoniaView();
+        Isonia = new(ControlsIoCFactory.CreateIsoniaView());
     }
 }
