@@ -18,34 +18,35 @@ public class EditorViewModel : Observable
     public Version? Version => version;
     public string? Title => title;
 
-    public ObservableCollection<MenuItemViewModel> Test { get; }
+    public ObservableCollection<MenuItemViewModel> Menu { get; }
 
     public NativeEmbeddingControl Isonia { get; } = new();
 
     public EditorViewModel()
     {
-        Test = new ObservableCollection<MenuItemViewModel>()
+        Menu = new()
         {
             new(string.Empty, IconStore.ProjectIcon, null, null,
-                new MenuItemViewModel("Build And Run")
+                new("Build And Run"),
+                new("Build")
             ),
             new("File", null, null, null,
-                new MenuItemViewModel("New Scene"),
-                new MenuItemViewModel("Open Scene"),
+                new("New Scene"),
+                new("Open Scene"),
 
-                new MenuItemViewModel("Save Scene", IconStore.SaveIcon, null, new KeyGesture(Key.S, KeyModifiers.Control)),
-                new MenuItemViewModel("Save Scene As...", IconStore.SaveAsIcon, null, new KeyGesture(Key.S, KeyModifiers.Control | KeyModifiers.Shift))
+                new("Save Scene", IconStore.SaveIcon, null, new(Key.S, KeyModifiers.Control)),
+                new("Save Scene As...", IconStore.SaveAsIcon, null, new(Key.S, KeyModifiers.Control | KeyModifiers.Shift))
             ),
             new("Edit", null, null, null,
-                new MenuItemViewModel("Undo"),
-                new MenuItemViewModel("Redo"),
-                new MenuItemViewModel("Undo History"),
+                new("Undo"),
+                new("Redo"),
+                new("Undo History"),
 
-                new MenuItemViewModel("Cut"),
-                new MenuItemViewModel("Copy"),
-                new MenuItemViewModel("Paste"),
-                new MenuItemViewModel("Duplicate"),
-                new MenuItemViewModel("Delete")
+                new("Cut"),
+                new("Copy"),
+                new("Paste"),
+                new("Duplicate"),
+                new("Delete")
             ),
             new("Window"),
             new("Tools")
