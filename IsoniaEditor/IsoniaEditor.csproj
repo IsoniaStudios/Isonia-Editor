@@ -1,28 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-	<TargetFrameworks>net8.0-windows;net8.0</TargetFrameworks>
-    <Nullable>enable</Nullable>
-    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-	<TrimMode>copyused</TrimMode>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-	<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<PlatformTarget>x64</PlatformTarget>
-	<Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>net8.0-windows;net8.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<TrimMode>copyused</TrimMode>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.5" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
-	<PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
-	<PackageReference Include="NP.IoCy" Version="1.0.27" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.0.5" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
+		<PackageReference Include="NP.IoCy" Version="1.0.27" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IsoniaCore\IsoniaCore.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\IsoniaCore\IsoniaCore.csproj" />
+	</ItemGroup>
+
+	<Target Name="CustomBuildStep" BeforeTargets="Build">
+		<!-- Set constants -->
+		<PropertyGroup>
+			<IsoniaPath>C:\Source\IsoniaStudios\Isonia</IsoniaPath>
+			<IsoniaOutPath>C:\Source\IsoniaStudios\Isonia\out\build</IsoniaOutPath>
+			<CL_COMPILER>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\Hostx64\x64\cl.exe</CL_COMPILER>
+			<CMakeBinary>cmake</CMakeBinary>
+		</PropertyGroup>
+
+		<!-- Build the CMake project with /FS flag -->
+		<Exec Command="$(CMakeBinary) -B out/build -S . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=$(CL_COMPILER) -DCMAKE_CXX_COMPILER=$(CL_COMPILER)" WorkingDirectory="$(IsoniaPath)" />
+
+		<!-- Build the CMake project -->
+		<Exec Command="$(CMakeBinary) --build ." WorkingDirectory="$(IsoniaOutPath)" />
+	</Target>
+	
+	<Target Name="CustomCopy" AfterTargets="Build">
+		<!-- Set constants -->
+		<ItemGroup>
+			<IsoniaDLLs Include="C:\Source\IsoniaStudios\Isonia\out\build\Isonia\Debug\*.*" />
+		</ItemGroup>
+
+		<!-- Copy the output to the output directory -->
+		<Copy SourceFiles="@(IsoniaDLLs)" DestinationFolder="$(OutputPath)" />
+	</Target>
 </Project>
