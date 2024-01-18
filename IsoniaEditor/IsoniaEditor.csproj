@@ -35,7 +35,7 @@
 			<CMakeBinary>cmake</CMakeBinary>
 		</PropertyGroup>
 
-		<!-- Build the CMake project with /FS flag -->
+		<!-- Build the CMake project -->
 		<Exec Command="$(CMakeBinary) -B out/build -S . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=$(CL_COMPILER) -DCMAKE_CXX_COMPILER=$(CL_COMPILER)" WorkingDirectory="$(IsoniaPath)" />
 
 		<!-- Build the CMake project -->
