@@ -46,9 +46,11 @@
 		<!-- Set constants -->
 		<ItemGroup>
 			<IsoniaDLLs Include="C:\Source\IsoniaStudios\Isonia\out\build\Isonia\Debug\*.*" />
+			<IsoniaResources Include="C:\Source\IsoniaStudios\Isonia\out\build\Isonia\Resources\**\*.*" />
 		</ItemGroup>
 
 		<!-- Copy the output to the output directory -->
 		<Copy SourceFiles="@(IsoniaDLLs)" DestinationFolder="$(OutputPath)" />
+		<Copy SourceFiles="@(IsoniaResources)" DestinationFiles="@(IsoniaResources->'$(OutputPath)\Resources\%(RecursiveDir)%(Filename)%(Extension)')" />
 	</Target>
 </Project>
